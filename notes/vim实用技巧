@@ -1,0 +1,10 @@
+*同时打开多个文件*
+- 在 terminal 时
+#横向分割显示
+:vim -o filename1 filename2
+#纵向分割显示
+:vim -O filename1 filename2
+- 在已经打开的 vim 窗口下，
+#横向分割显示
+:vs filename
+#纵向分割显示
