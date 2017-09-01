@@ -1,9 +1,10 @@
+
 #coding=utf-8                                  
  
 #====================
-#File: backup_ver1.py
+#File: backup_ver2.py
 #Author: Cheng Cai
-#Date: 2017-08-31
+#Date: 2017-09-01
 #====================
 
 import os
@@ -22,15 +23,20 @@ target_dir = '/Users/chengcai/Documents/GitHub/backup'
 #在 mscos 中它会是':'，
 #+号运算符来创建目标 zip 文件的文件名
 #将两个字符串连接成一个新的字符串
-target = target_dir + os.sep + \
-        time.strftime('%Y%m%d%H%M%S') + '.zip'
+today = target_dir + os.sep +time.strftime('%Y%m%d')
 
-if not os.path.exists(target_dir):
-    os.mkdir(target_dir)    #
+now = time.strftime('%H%M%S')
 
+target = today + os.sep + now + '.zip'
+
+if not os.path.exists (today):
+    os.mkdir(today)    
+    print 'Successfully created directory', today
+
+#5使用 zip 命令将文件打包成 zip 格式
 zip_command = 'zip -r {0} {1}'.format(target,
                                     ' '.join(source))
-
+#运行备份
 print 'Zip command is:'
 print zip_command
 print 'Running:'
