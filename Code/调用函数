@@ -1,0 +1,13 @@
+def varargs(*args):
+    return args
+
+varargs(1, 2, 3)
+    
+def keyword_args(**kwargs):
+    return kwargs
+
+keyword_args(big="foot", loch="ness")
+
+def all_the_args(*args, **kwargs):
+    print args
+    print kwargs
