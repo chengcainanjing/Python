@@ -1,7 +1,7 @@
 #coding=utf-8
  
 #====================
-#File: simple_message.py
+#File: Python编程从入门到实践.py
 #Author: Cheng Cai
 #Date: 2017-09-09
 #====================
@@ -125,7 +125,7 @@ print names
 names.append('chengcai')
 print names
 
-# 在列表中插入元素
+#在列表中插入元素
 #insert 方法可以在列表的任何位置插入元素
 names.insert(1, 'panqiaoxu')
 print names
@@ -150,79 +150,58 @@ print names
 #使用 remove 方法
 names.remove('caiyuntao')
 print names
-# 注意，该方法只能删除第一个指定的值，如果需要删除的值，多次出现，需要多次删除
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#注意，该方法只能删除第一个指定的值，如果需要删除的值，多次出现，需要多次删除
+
+# 组织列表
+#使用方法 sort（）对列表进行永久性排序,且是按照字母顺序排列
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+print "\nHere is the original list: "
+print cars
+
+cars.sort()
+print "\nHere is the sort list: "
+print cars
+
+#排列按字母表顺序相反的顺序排列
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+cars.sort(reverse=True)
+print "\nHere is the sort and reversed list: "
+print cars
  
+#使用 sorted() 对列表进行临时排序
+#sorted() 方法能够按特定的顺序显示列表元素，
+#同时不影响他们在列表中的原始排列顺序
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+
+print "\nHere is the original list: "
+print cars
+
+print "\nHere is the sorted list: "
+print sorted(cars)
+
+#倒着导引列表
+#如果想要按与字母顺序相反的顺序显示列表，
+#可向函数sorted()传递参数reverse=True
+print "\nHere is the reverse=True list: "
+print sorted(cars, reverse = True)
+
+# 反列表元素排列顺序，使用方法 reverse（）
+#但 reverse（）不是指按与字母顺序相反的顺序排列列表元素
+#只是反转列表元素的排列顺序
+#方法 reverse（）永久性地修改列表元素的排列顺序
+#但可随时恢复到原来的品牌列顺序
+#只需要对列表再次调用 reverse（）即可
+print "\nHere is the reverse list: "
+cars.reverse()
+print cars
+print "\nHere is the original lise: "
+print "\nLook the list which is original or not: "
+cars.reverse()
+print cars
+
+#确定列表的长度
+#使用函数len()
+print "\nthe length of the list: "
+print len(cars)
+
 
