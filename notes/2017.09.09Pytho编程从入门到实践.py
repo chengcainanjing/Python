@@ -204,4 +204,9 @@ print cars
 print "\nthe length of the list: "
 print len(cars)
 
+#遍历列表
+magicians = ['alice', 'david', 'carolina']
+for magician in magicians:
+    print magician
+
 
