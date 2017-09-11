@@ -211,8 +211,8 @@ for magician in magicians:
     print magician
 
 for magician in magicians:
- print magician.title()+", that was a great trick!"
-	print "I can't wait to see your next trick, " + magician.title() + ".\n"
+    print magician.title()+", that was a great trick!"
+    print "I can't wait to see your next trick, " + magician.title() + ".\n"
 	
 print "Thank you, everyone. That was a great magic show!"
 	
@@ -255,6 +255,99 @@ print sum(digits)
 #列表解析
 squares = [value**2 for value in range(1, 11)]
 print squares
+
+#切片
+players = ['charles', 'martina', 'michael', 'florence', 'eli']
+print "\n前三个元素是：{}".format(players[0:3])
+print "\n第二个元素到第四个元素是：{}".format(players[1:4])
+#不指定第一个索引，Python 自动从列表开头开始
+print "\n前四个元素是：{}".format(players[:4])    
+#不指定第二个索引，Python 自动索引到最后一个元素，并且输出最后一个元素
+print "\n第二个元素到最后一个元素是：{}".format(players[1:])
+#第一个索引从倒数第三个元素开始
+print "\n倒数第三个元素到最后一个元素是：{}".format(players[-3:])
+
+#遍历切片
+
+print "\nHere is all people in my team:"
+
+for player in players[:]:
+    print player.title()
+
+
+#复制列表
+my_foods = ['pizza', 'falafel', 'carrot cake']
+#这一步是切片，复制整个列表给另一个新列表，原列表不变
+friend_foods = my_foods[:]
+
+my_foods.append('cannoli')
+friend_foods.append('ice cream')
+
+print '\nMy favourite foods are:'
+print my_foods
+
+#新列表添加新的元素，与原列表不影响，无冲突
+print '\nMy friend favourite foods are:'
+print friend_foods
+ 
+#下面这一步不同于上面的切片方法，这是直接将原列表赋给新列表，
+#而不是把 my_foods 的副本 存储到 friend_foods
+#这种语法实际上是让python将新变量 friend_foods 关联到包含在my_foods 中的列表
+#因此这两个变量指向同一个列表
+friend_foods = my_foods
+
+my_foods.append('cannoli')
+friend_foods.append('ice cream')
+
+print '\nMy favourite foods are:'
+print my_foods
+
+#新列表添加新的元素，与原列表不影响，无冲突
+print '\nMy friend favourite foods are:'
+print friend_foods
+ 
+#元组
+#不可以修改元素，列表可以修改元素
+# 元组是用圆括号来定义
+dimensions = (200, 50)
+print dimensions[0]
+print dimensions[1]
+
+#修改元组内的某个元素是不可能的，会显示报错
+#dimensions[0] = 50
+#print dimensions[0]
+#遍历元组内所有元素
+for dimension in dimensions:
+    print dimension
+
+#虽然元组的元素不可以改变，
+#但是存储元组的变量是可以被修改的
+print '\nOriginal dimensions:'
+for dimension in dimensions:
+    print dimension
+
+dimensions = (410, 100)
+print '\nModified dimensions:'
+for dimension in dimensions:
+    print dimension
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
