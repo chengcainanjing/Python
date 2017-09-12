@@ -331,6 +331,29 @@ print '\nModified dimensions:'
 for dimension in dimensions:
     print dimension
 
+#字典
+#字典是一系列建--值对
+#每个键都与一个值相关联
+#字典用花括号将一系列的键--值对表示
+alien_0 = {'color':'green','points':5}
+print alien_0['color']
+print alien_0['points']
+
+#赋值给新的变量
+new_points = alien_0['points']
+print "\nYou just earned" + str(new_points) + "points.\n"
+
+#添加键-值对
+#字典是一种动态结构
+#可随时在其中添加键-值对
+print alien_0
+
+#如何添加键-值
+alien_0['x_position'] = 0
+alien_0['y_position'] = 50
+print alien_0
+
+
 
 
 
