@@ -356,8 +356,120 @@ print alien_0
 
 
 
+#遇事冷静，礼让三分
+#情绪稳定，思维清晰时，做判断；相反时，不要做任何决定
+#做事别冲动，退一步海阔天空
+#对人对事，有耐心，要细心，持爱心
+#每天起来笑一笑，想一件快乐、开心的事
+#不开心的事总会过去，开心的事都会留下美好回忆
+#常挂笑容在嘴边，对人多笑笑
 
 
+
+#字典
+#字典是一系列建--值对
+#每个键都与一个值相关联
+#字典用花括号将一系列的键--值对表示
+alien_0 = {'color':'green','points':5}
+print alien_0['color']
+print alien_0['points']
+
+#赋值给新的变量
+new_points = alien_0['points']
+print "\nYou just earned" + str(new_points) + "points.\n"
+
+#添加键-值对
+#字典是一种动态结构
+#可随时在其中添加键-值对
+print alien_0
+
+#如何添加键-值
+alien_0['x_position'] = 0
+alien_0['y_position'] = 50
+print alien_0
+
+#创建一个空字典
+alien_1 = {}
+alien_1['color'] = "blue"
+alien_1['points'] = 10
+print alien_1
+
+#修改字典中的值
+alien_1['color'] = 'yellow'
+print "\nThe alien is now " + alien_1["color"] + "."
+
+alien_1 = {'x_position':0,'y_position':50,'speed':'medium'}
+print "\nOriginal x_position: " + str(alien_1['x_position'])
+
+if alien_1['speed'] == 'slow':
+	x_increment = 1
+elif alien_1['speed'] == 'medium':
+	x_increment = 2
+elif alien_1['speed'] == 'fast':
+	x_increment = 3
+
+#新位置等于老位置加上增量
+alien_1['x_position'] = alien_1['x_position'] + x_increment
+print "\nNew x_position: " + str(alien_1['x_position'])
+
+#删除键-值对
+#可使用del语句
+#使用时必须指定字典名和要删除的键
+alien_0 = {'color':'green','points':5}
+print alien_0
+
+del alien_0['points']
+print alien_0
+
+#由类似对象组成的字典
+favorite_languages = {'jen':'python',
+					'sarah':'C',
+					'edward':'ruby',
+					'phil':'python'					
+					}
+
+print "Sarah's favorite language is " + favorite_languages['sarah'].title() + '.'
+
+#存储一个熟人
+my_girlfriend = {}
+my_girlfriend['first_name'] = 'Jin'
+my_girlfriend['last_name'] = 'Lei'
+my_girlfriend['age'] = 27
+my_girlfriend['city'] = 'nanjing'
+print my_girlfriend
+
+#遍历字典
+user_0 = {'username':'zhanzhi',
+		'first_name':'jin',
+		'last_name':'lei'
+		}
+
+for key,value in user_0.items():
+	print '\nkey: ' + key
+	print 'value: ' + value
+	
+#注意即使遍历整个字典时，键-值对的返回顺序也与存储顺序不同，python不关心键-值对的存储顺序，
+#而只跟踪键和值之间的关联关系
+favorite_languages = {'jen':'python',
+					'sarah':'C',
+					'edward':'ruby',
+					'phil':'python'					
+					}
+
+for name,language in favorite_languages.items():
+	print name.title() + "'s favorite language is " + language.title() + "."
+
+#遍历所有的键
+for name in favorite_languages.keys():
+	print name.title()
+	
+#遍历字典时，默认遍历所有的键，因此上面的for循环可以等于
+friends = ['phil', 'sarah']
+for name in favorite_languages:
+	print name.title()
+	
+	if name in friends:
+		print "Hi, " + name.title() + ", I see your favorite language is " + favorite_languages[name].title() + "!"
 
 
 
