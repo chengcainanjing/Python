@@ -456,6 +456,7 @@ favorite_languages = {'jen':'python',
 					'phil':'python'					
 					}
 
+#方法 item（）返回一个键-值对列表
 for name,language in favorite_languages.items():
 	print name.title() + "'s favorite language is " + language.title() + "."
 
@@ -469,19 +470,70 @@ for name in favorite_languages:
 	print name.title()
 	
 	if name in friends:
-		print "Hi, " + name.title() + ", I see your favorite language is " + favorite_languages[name].title() + "!"
+	    print "Hi, " + name.title() +\
+                        ", I see your favorite language is " +\
+                        favorite_languages[name].title() + "!"
 
+        if 'erin' not in favorite_languages.keys():
+            print '\nErin, please take our poll!\n'
+            
+#按顺序遍历字典中的所有键
+for name in sorted(favorite_languages.keys()):
+    print name.title() + ", thank you for taking the poll.\n"
 
+# 遍历字典中所有值
+print 'The following languages have been mentioned:'
+for language in favorite_languages.values():
+    print language.title()
 
+#为了剔除重复项，可用集合set()
+print '\nThe following languages have been mentioned:'
+for language in set(favorite_languages.values()):
+    print language.title()
 
+# 嵌套
+#将一系列字典存储在列表中，或
+#将一系列列表存储在字典中
+#等等
 
+#字典列表
+alien_0 = {'color':'yellow', 'speed':'low', 'points':'5'}
+alien_1 = {'color':'blue', 'speed':'low', 'points':'5'}
+alien_2 = {'color':'red', 'speed':'low', 'points':'5'}
 
+aliens = [alien_0, alien_1, alien_2]
+for alien in aliens:
+    print alien
 
+#自动生成外星人
+#使用range()
+#先创建一个空列表
+aliens= []
 
+#使用随机函数range（）来创建三十个外星人
+for alien_number in range(30):
+    new_alien = {'color':'blue', 'speed':'low', 'points':5}
+    aliens.append(new_alien)
 
+# 将前三个外星人颜色修改为黄色，速度为中等，值为10
+for alien in aliens[:3]:
+    if alien['color'] == 'blue':
+        alien['color'] = 'yellow'
+        alien['speed'] = 'medium'
+        alien['points'] = 10
+    elif alien['color'] == 'yellow':
+        alien['color'] = 'red'
+        alien['speed'] = 'fast'
+        alien['points'] = 15
 
+print '\nThe first fifth aliens of all:'
+for alien in aliens[:5]:
+    print alien
+print '...'
 
+print 'Total number of aliens: ' + str(len(aliens))
 
+#在字典中存储列表
 
 
 
