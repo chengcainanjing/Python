@@ -696,6 +696,67 @@ else:
 	print "\nThe number " + number + ' is odd.'
 	
 #while循环
+#使用标志，判断整个程序是否处于活动状态
+prompt = "\nTell me something, and I will repeat it back to you:"
+prompt += "\nEnter 'quit' to end the program."
+
+message = ""
+active =True
+#while 语句可以如下局判断，也可以用active 来做判断
+#while message != 'quit':
+while active:
+    message = raw_input(prompt)
+
+    if message == 'quit':
+        active = False
+    else:
+        print message
+
+#使用 break 退出循环
+prompt = '\nPlease enter the name of a city you have visited:'
+prompt += "\n(Enter 'quit' when you are finished.)"
+
+while True:
+    city = raw_input(prompt)
+
+    if city == 'quit':
+        break
+    else:
+        print "I'd love to go to " + city.title() + "!"
+
+#在循环中使用 continue
+current_number = 0
+while current_number < 10:
+    current_number += 1
+    if current_number % 2 == 0:
+        continue
+
+    print current_number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
