@@ -545,6 +545,157 @@ print "You ordered a " + pizza['crust'] + "-crust pizza " + \
 for topping in pizza['toppings']:
 	print '\t' + topping
 
+#2017.09.13	
+#每当需要在字典中将一个键关联到多个值时，
+#可以在字典中嵌套一个列表
+favorite_languages = {
+					'jen':['python','ruby'],
+					'sarah':['c','python'],
+					'edward':['ruby','c'],
+					'phil':['python','c'],
+					}
+	
+for names,languages in favorite_languages.items():
+	print  '\n' + name.title() + "'s favorite languages are: "
+	for language in languages:
+		print '\t' + language.title()
+		
+#字典中嵌套字典
+users = {'aeinsten':{'first':'albert', 'last':'einstein', 'location':'princeton'},
+		'mcurie':{'first':'marie', 'last':'curie', 'location':'paris'},
+		}
+
+#输出一系列键-值对
+for username,user_info in users.items():
+	print '\nUsername:' + username
+	full_name = user_info['first'] + ' ' +user_info['last']
+	location = user_info['location']
+	
+	print '\tFull name: ' + full_name.title()
+	print '\tLocation: ' + location.title()
+
+#分开输出键与值
+for username in users.keys():
+	print 'Username: ' + username
+	
+for user_info in users.values():
+	print '\tFull_name: ' + user_info['first'].title() + ' ' \
+				+ user_info['last'].title()
+	print '\tLocation :' + user_info['location'].title()
+	
+#6-7
+person_0 = {'first_name':'zeng', 'last_name':'xiaoxian', 'age':18, 'location':'shanghai'}
+person_1 = {'first_name':'hu', 'last_name':'yifei', 'age':18, 'location':'shanghai'}
+person_2 = {'first_name':'lv', 'last_name':'ziqiao', 'age':18, 'location':'shanghai'}
+
+people = [person_0, person_1, person_2]
+
+for person in people:
+	#简单方法打印所有人员信息
+	#print '\n'+ str(person)
+	
+	#详细方法打印所有人员信息
+	full_name = person['first_name'] + ' ' + person['last_name']
+	print full_name.title() + ' is ' + str(person['age']) + ' old, and lives in '\
+			+ person['location'].title() + '.'
+	
+#6-8
+pet_0 = {'dog':{'age':3, 'master':'zengxiaoxian'}}
+pet_1 = {'cat':{'age':2, 'master':'songmeijia'}}
+pet_2 = {'monkey':{'age':4, 'master':'zhangwei'}}
+
+pets = [pet_0, pet_1, pet_2]
+#第一个for循环针对的是列表
+#第二个for循环针对的是字典，需要for循环是因为字典内嵌套字典
+for pet in pets:
+	for pet_name,pet_info in pet.items():
+	
+		print '\n' + pet_info['master'].title() + "'s pet is " + pet_name \
+					+ ' and the age is ' + str(pet_info['age'])
+	
+#如果pet_0等三个字典中不嵌套时，代码如下
+pet_0 = {'age':3, 'master':'zengxiaoxian'}
+pet_1 = {'age':2, 'master':'songmeijia'}
+pet_2 = {'age':4, 'master':'zhangwei'}
+
+pets = [pet_0, pet_1, pet_2]
+for pet in pets:
+	print pet['master'].title() + "'s pet is " + str(pet['age']) \
+			+ ' years old.'
+
+#6-9
+#列表字典
+favorite_places = {
+				'zengxiaoxian':['shanghai', 'beijing', 'beihaidao'],
+				'huyifei':['beijing', 'xian', 'nanjing'],
+				'lvziqiao':['nanjing', 'suzhou', 'dalian'],
+				}
+
+for name,places in sorted(favorite_places.items()):
+	print name.title() + "'s favorite palces are : "
+	for place in sorted(places):
+		print '\t' + place.title()
+
+#6-10
+#字典列表
+person_0 = {'name':'zengxiaoxian', 'number':[2,5,8]}
+person_1 = {'name':'lvziqiao', 'number':[10,50,18]}
+person_2 = {'name':'zhangwei', 'number':[21,52,84]}
+
+people = [person_0, person_1, person_2]
+
+for person in people:
+	print '\nName :' + person['name'].title() + '\nFavorite number: ' 
+	for number in person['number']:
+			print '\t' + str(number)
+
+#个人感悟
+#列表、字典、字典列表、列表字典、字典字典
+#无论在如何复杂，字典必包含一系列键-值对，键都是一个值
+#但是值可以是任何形式，可以是单个字符串、单个数字、列表、字典
+#我们在使用的时候，本质是调用的属性，例如：列表的属性、字典的属性
+#在操作时，仅仅是将这些属性综合起来运用而已
+#在调用列表所有属性对值进行操作，
+#从字典中提取值一定要注意它的形式
+		
+
+#用户输入
+message = raw_input("Tell me something, and I'll repeat it back to you: ")
+print message
+
+name = raw_input("Please inter your name:")
+print "Hello, " + name.title() + "!"
+
+prompt = "If you tell us who are you, we can personalize the message you see."
+prompt = "\nWhat is your first name?"
+
+name = raw_input(prompt)
+print '\nHello, ' + name.title()
+
+#raw_input输入的字符，系统将它看作字符串，
+#如果想要与整数做比较，需要进行数据类型转换int()
+height = raw_input("How tall are you, in inches?")
+height = int(height)
+
+if height >= 36:
+	print "\nYou're tall enough to ride!"	
+else:
+	print("\nYou'll be able to ride when you're a little older.")
+
+#求模运算符
+#求模运算符不会指出一个数是另一个数的多少倍，而只指出余数是多少
+#4%3 >>>1
+#5%3 >>>1
+#6%3 >>>0
+number = raw_input("Enter a number, and I will tell you if it's even or odd:")
+number_0 = int(number)
+
+if number_0 % 2 == 0:
+	print "\nThe number " + number + ' is even.'
+else:
+	print "\nThe number " + number + ' is odd.'
+	
+#while循环
 
 
 
