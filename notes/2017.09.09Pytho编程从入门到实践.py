@@ -534,6 +534,16 @@ print '...'
 print 'Total number of aliens: ' + str(len(aliens))
 
 #在字典中存储列表
+pizza = {
+		'crust':'thick',
+		'toppings':['mushroom','extra cheese'],
+		}
+
+print "You ordered a " + pizza['crust'] + "-crust pizza " + \
+	"with the following toppings: "
+
+for topping in pizza['toppings']:
+	print '\t' + topping
 
 
 
