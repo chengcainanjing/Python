@@ -660,6 +660,7 @@ for person in people:
 		
 
 #用户输入
+'''
 message = raw_input("Tell me something, and I'll repeat it back to you: ")
 print message
 
@@ -671,9 +672,11 @@ prompt = "\nWhat is your first name?"
 
 name = raw_input(prompt)
 print '\nHello, ' + name.title()
+'''
 
 #raw_input输入的字符，系统将它看作字符串，
 #如果想要与整数做比较，需要进行数据类型转换int()
+'''
 height = raw_input("How tall are you, in inches?")
 height = int(height)
 
@@ -681,12 +684,14 @@ if height >= 36:
 	print "\nYou're tall enough to ride!"	
 else:
 	print("\nYou'll be able to ride when you're a little older.")
+'''
 
 #求模运算符
 #求模运算符不会指出一个数是另一个数的多少倍，而只指出余数是多少
 #4%3 >>>1
 #5%3 >>>1
 #6%3 >>>0
+'''
 number = raw_input("Enter a number, and I will tell you if it's even or odd:")
 number_0 = int(number)
 
@@ -694,9 +699,11 @@ if number_0 % 2 == 0:
 	print "\nThe number " + number + ' is even.'
 else:
 	print "\nThe number " + number + ' is odd.'
-	
+'''
+
 #while循环
 #使用标志，判断整个程序是否处于活动状态
+'''
 prompt = "\nTell me something, and I will repeat it back to you:"
 prompt += "\nEnter 'quit' to end the program."
 
@@ -711,7 +718,9 @@ while active:
         active = False
     else:
         print message
+'''
 
+'''
 #使用 break 退出循环
 prompt = '\nPlease enter the name of a city you have visited:'
 prompt += "\n(Enter 'quit' when you are finished.)"
@@ -732,6 +741,7 @@ while current_number < 10:
         continue
 
     print current_number
+'''
 
 #2017.09.14
 #使用while循环来处理列表和字典
@@ -784,18 +794,22 @@ for name,response in sorted(responses.items()):
 
 #函数 
 #函数是带名字的代码块
+'''
 def greet_user():
 	print ('Hello')
 	
 greet_user()
+'''
 
 #向函数体传递信息
 #定义一个函数带参数
+'''
 def greet_user(username):
 	print 'Hello, ' + username.title() + '.'
 
 greet_user('zengxiaoxian')
-	
+'''
+
 #实参与形参
 #上面函数greet_user()中username是一个形参
 #形参——函数完成其工作所需的一项信息
@@ -971,40 +985,32 @@ make_album('zhangxueyou', 'yiqie')
 '''
 
 #传递函数
-def greet_user(users_name):
-	while users_name:
-		current_user  = users_name.pop()
-		print 'Hello, ' + current_user + '!'
+def greet_users(users_name):
+    names = users_name[:]
+    while names:
+	current_user = names.pop()
+	print 'Hello, ' + current_user + '!'
 
 users_name = ['zengxiaoxian', 'huyifei', 'zhangwei']
+greet_users(users_name)
+print users_name
 
+# 在函数中修改列表
+def print_models(unprinted_designs, completed_models):
+    while unprinted_designs:
+        current_design = unprinted_designs.pop()
 
+        print 'Printing model: ' + current_design
+        completed_models.append(current_design)
 
+def show_completed_models(completed_models):
+    print '\nThe following models have been printed: '
+    for completed_model in completed_models:
+        print completed_model
 
+unprinted_designs = ['iphone case', 'robot pendant', 'dodecahedron']
+completed_models = []
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print_models(unprinted_designs, completed_models)
+show_completed_models(completed_models)
 
