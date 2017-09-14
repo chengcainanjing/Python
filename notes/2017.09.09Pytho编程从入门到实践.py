@@ -945,18 +945,18 @@ while True:
 	
 	print '\nHello, ' + formatted_name.title()
 	
-	quit = raw_input('\nDO you want to quit?(yes/no)')
-	if quit == 'yes':
-		break
+            quit = raw_input('\nDO you want to quit?(yes/no)')
+            if quit == 'yes':
+                    break
 '''
 
 #test
 #8-6
 '''
 def city_country(city, country):
-	full_format = city.title() + ', ' + country.title()
-	return full_format
-	
+            full_format = city.title() + ', ' + country.title()
+            return full_format
+            
 get_formatted_city_0 = city_country('chengdu', 'china')
 get_formatted_city_1 = city_country('new_york', 'usa')
 get_formatted_city_2 = city_country('yokoto', 'japan')
@@ -964,8 +964,8 @@ get_formatted_citys = [get_formatted_city_0, get_formatted_city_1, get_formatted
 print get_formatted_citys
 #方法2
 def city_country(city, country):
-	print city.title()+ ', ' + country.title()
-	
+        print city.title()+ ', ' + country.title()
+            
 city_country('chengdu', 'china')
 city_country('newyork', 'usa')
 city_country('toyoto', 'japan')
@@ -974,10 +974,10 @@ city_country('toyoto', 'japan')
 #8-7
 '''
 def make_album(songer, album_name, album_number=''):
-	song_info = {'songer': songer, 'album_name':album_name}
-	if album_number:
-		song_info['album_name'] = album_number
-	print song_info
+        song_info = {'songer': songer, 'album_name':album_name}
+        if album_number:
+                song_info['album_name'] = album_number
+        print song_info
 
 make_album('liuhuan', 'dahexiangdongliu', '8')
 make_album('liudehua', 'benxiaohai', '12')
@@ -985,11 +985,12 @@ make_album('zhangxueyou', 'yiqie')
 '''
 
 #传递函数
+'''
 def greet_users(users_name):
     names = users_name[:]
     while names:
-	current_user = names.pop()
-	print 'Hello, ' + current_user + '!'
+        current_user = names.pop()
+        print 'Hello, ' + current_user + '!'
 
 users_name = ['zengxiaoxian', 'huyifei', 'zhangwei']
 greet_users(users_name)
@@ -999,7 +1000,6 @@ print users_name
 def print_models(unprinted_designs, completed_models):
     while unprinted_designs:
         current_design = unprinted_designs.pop()
-
         print 'Printing model: ' + current_design
         completed_models.append(current_design)
 
@@ -1013,4 +1013,59 @@ completed_models = []
 
 print_models(unprinted_designs, completed_models)
 show_completed_models(completed_models)
+'''
+
+#禁止函数修改列表
+function_name(list_name[:])
+#这形参表示是实参的副本，而不是实参传递的本身
+#保证了实参本身的原本性
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
