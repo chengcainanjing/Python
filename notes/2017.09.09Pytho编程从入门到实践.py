@@ -733,6 +733,251 @@ while current_number < 10:
 
     print current_number
 
+#2017.09.14
+#使用while循环来处理列表和字典
+unconfirmed_users = ['alice','brian','candace']
+confirmed_users = []
+
+while unconfirmed_users:
+	current_user = unconfirmed_users.pop()
+	
+	print 'Verifying user:' + current_user
+	confirmed_users.insert(1, current_user)
+	
+print '\nThe following users have been confirmed: '
+for confirmed_user in sorted(confirmed_users):
+	print confirmed_user.title()
+
+#删除包含特定值得所有列表元素
+pets = ['cats', 'dogs', 'monkeys', 'goldlishes', 'rabbits', 'pigs']
+while 'cats' in pets:
+	pets.remove('cats')
+	
+print '\n' + str(pets)
+
+'''
+#使用用户输入来填充字典
+responses = {}
+polling_active = True
+
+while polling_active:
+	name = raw_input('\nWhat is your name?')
+	response = raw_input('Which mountain would you like to climb someday?')
+
+	#注意下一步是将字典中的键与值一一对应的
+	responses[name] = response
+	
+	repeat = raw_input('Would you like to let another person respond? (yes/no)')
+	if repeat == 'no' or repeat == 'n':
+		polling_active = False
+
+print '\n---Poll Results---'
+#注意：对于字典，print输出时，不能使用是sorted()函数，
+#使用后字典仅显示键，不显示值
+#print sorted(responses)	#这个显示的是键，对键排序，不显示值
+#下面一行代码显示键-值对
+print responses
+#在for循环中，针对键-值对的循环，可以使用sorted()
+for name,response in sorted(responses.items()):
+	print name + 'would like to climb '+ response + '.'
+'''
+
+#函数 
+#函数是带名字的代码块
+def greet_user():
+	print ('Hello')
+	
+greet_user()
+
+#向函数体传递信息
+#定义一个函数带参数
+def greet_user(username):
+	print 'Hello, ' + username.title() + '.'
+
+greet_user('zengxiaoxian')
+	
+#实参与形参
+#上面函数greet_user()中username是一个形参
+#形参——函数完成其工作所需的一项信息
+#在代码greet_user('zengxiaoxian')中，
+#值'zengxiaoxian'是一个实参
+#实参——调用函数时传递给函数的信息
+#在greet_user('zengxiaoxian')中，
+#将实参'zengxiaoxian'传递给了函数greet_user()
+#这个值被存在形参username中
+
+#位置实参
+#调用函数时，将函数调用中的每一个实参都关联到函数定义中的一个形参
+#为此，最简单的关联方式是基于实参的顺序
+'''
+def describe_pet(animal_type, pet_name):
+	print '\nI have a ' + animal_type + '.'
+	print 'My ' +animal_type + "'s name is " + pet_name.title() + '.'
+
+describe_pet('hamster','harry')
+describe_pet('dog','willie')
+'''
+'''
+#实参传递时，调换前后顺序，查看形参是否按顺序输出
+def describe_pet(animal_type, pet_name):
+	print '\nI have a ' + animal_type + '.'
+	print 'My ' +animal_type + "'s name is " + pet_name.title() + '.'
+
+describe_pet('harry','hamster')
+describe_pet('willie','dog')
+#输出结果按实参传递给形参的顺序输出
+'''
+
+#关键字实参
+#其是传递给函数的名称-值对
+#在实参中将名称与值关联起来
+#因此向函数传递实参时不会混淆（不会出现上面的情况）
+#关键字实参让我们无需考虑函数调用中实参顺序
+#还可以清楚的指出函数调用中的各个值的用途
+'''
+def describe_pet(animal_type, pet_name):
+	print '\nI have a ' + animal_type + '.'
+	print 'My ' +animal_type + "'s name is " + pet_name.title() + '.'
+
+describe_pet(pet_name = 'harry', animal_type = 'hamster')
+'''
+	
+#默认值
+'''
+def describe_pet(pet_name, animal_type = 'dog'):
+	print '\nI have a ' + animal_type + '.'
+	print 'My ' +animal_type + "'s name is " + pet_name.title() + '.'
+
+describe_pet('harry')
+'''
+#注意： 在这个函数中，修改了形参的排列顺序
+#由于给animal_type指定了默认值，无需通过实参来指定动物类型，
+#因此在函数调用中只包含一个实参--pet_name
+#但是，python仍然将这个实参视为位置实参，
+#因此，如果函数调用中只包含宠物名字，
+#这个实参将关联到函数定义的第一个形参
+#这就需要将pet_name放到形参列表开头的原因所在
+
+#如果显式的给naminal_type提供实参，
+#python忽略这个形参的默认值
+'''
+def describe_pet(pet_name, animal_type = 'dog'):
+	print '\nI have a ' + animal_type + '.'
+	print 'My ' +animal_type + "'s name is " + pet_name.title() + '.'
+
+describe_pet(pet_name = 'harry', animal_type = 'hamster')
+'''
+
+#返回值
+#返回简单值
+'''
+def get_formatted_name(first_name, last_name):
+	full_name = first_name + ' ' + last_name
+	return full_name.title()
+	
+musician = get_formatted_name('jimi', 'hendrix')
+print musician
+'''
+
+#让实参变成可选的
+'''
+def get_formatted_name(first_name, last_name, middle_name = ''):
+	#python将非空字符串解读为True
+	if middle_name:
+		full_name = first_name + ' ' + middle_name + ' ' + last_name
+	else:
+		full_name = first_name + ' ' + last_name
+	return full_name.title()
+	
+musician = get_formatted_name('jimi', 'hendrix')
+print musician
+
+musician = get_formatted_name('Geng', 'xue', 'chang')
+print musician
+'''
+
+#返回字典
+'''
+def build_person(first_name, last_name, age = ''):
+	person = {'first_name':first_name,'last_name':last_name}
+	if age:
+		person['age'] = age
+	
+	return person
+
+musician = build_person('zeng', 'xiaoxian', '5')
+print musician
+'''
+
+#结合使用函数和while循环
+'''
+def get_formatted_name(first_name, last_name):
+	full_name = first_name + ' ' + last_name
+	return full_name.title()
+
+while True:
+	print '\nPlease tell me your name: '
+	print "Enter 'q' at any time to quit"
+
+	f_name = raw_input('First_name: ')
+	if f_name == 'q':
+		break
+		
+	l_name = raw_input('Last_name: ')
+	if l_name == 'q':
+		break
+	
+	formatted_name = get_formatted_name(f_name, l_name)
+	
+	print '\nHello, ' + formatted_name.title()
+	
+	quit = raw_input('\nDO you want to quit?(yes/no)')
+	if quit == 'yes':
+		break
+'''
+
+#test
+#8-6
+'''
+def city_country(city, country):
+	full_format = city.title() + ', ' + country.title()
+	return full_format
+	
+get_formatted_city_0 = city_country('chengdu', 'china')
+get_formatted_city_1 = city_country('new_york', 'usa')
+get_formatted_city_2 = city_country('yokoto', 'japan')
+get_formatted_citys = [get_formatted_city_0, get_formatted_city_1, get_formatted_city_2]	
+print get_formatted_citys
+#方法2
+def city_country(city, country):
+	print city.title()+ ', ' + country.title()
+	
+city_country('chengdu', 'china')
+city_country('newyork', 'usa')
+city_country('toyoto', 'japan')
+'''
+
+#8-7
+'''
+def make_album(songer, album_name, album_number=''):
+	song_info = {'songer': songer, 'album_name':album_name}
+	if album_number:
+		song_info['album_name'] = album_number
+	print song_info
+
+make_album('liuhuan', 'dahexiangdongliu', '8')
+make_album('liudehua', 'benxiaohai', '12')
+make_album('zhangxueyou', 'yiqie')
+'''
+
+#传递函数
+def greet_user(users_name):
+	while users_name:
+		current_user  = users_name.pop()
+		print 'Hello, ' + current_user + '!'
+
+users_name = ['zengxiaoxian', 'huyifei', 'zhangwei']
+
 
 
 
