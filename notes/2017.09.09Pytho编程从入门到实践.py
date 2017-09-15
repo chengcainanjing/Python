@@ -5,7 +5,10 @@
 #Author: Cheng Cai
 #Date: 2017-09-09
 #====================
+#import module_name
+#from module_name import make_pizza as mp
 
+'''
 #字符串
 string = 'This is a string'
 print string
@@ -648,7 +651,7 @@ for person in people:
 	print '\nName :' + person['name'].title() + '\nFavorite number: ' 
 	for number in person['number']:
 			print '\t' + str(number)
-
+'''
 #个人感悟
 #列表、字典、字典列表、列表字典、字典字典
 #无论在如何复杂，字典必包含一系列键-值对，键都是一个值
@@ -745,6 +748,7 @@ while current_number < 10:
 
 #2017.09.14
 #使用while循环来处理列表和字典
+'''
 unconfirmed_users = ['alice','brian','candace']
 confirmed_users = []
 
@@ -757,13 +761,16 @@ while unconfirmed_users:
 print '\nThe following users have been confirmed: '
 for confirmed_user in sorted(confirmed_users):
 	print confirmed_user.title()
+'''
 
 #删除包含特定值得所有列表元素
+'''
 pets = ['cats', 'dogs', 'monkeys', 'goldlishes', 'rabbits', 'pigs']
 while 'cats' in pets:
 	pets.remove('cats')
 	
 print '\n' + str(pets)
+'''
 
 '''
 #使用用户输入来填充字典
@@ -1016,15 +1023,431 @@ show_completed_models(completed_models)
 '''
 
 #禁止函数修改列表
-function_name(list_name[:])
-#这形参表示是实参的副本，而不是实参传递的本身
+#function_name(list_name[:])
+#这实参表示将列表的副本传递给函数，而不是实参传递的本身
 #保证了实参本身的原本性
+#print_models(unprinted_models[:], completed_models)
+
+#2017.09.15
+#传递任意数量的实参
+'''
+def make_pizza(*toppings):
+	print toppings
+	
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+'''
+#形参名×toppings中的星号让python创建一个名为toppings的空元组
+#将收集来的所有值都封装在这个元组中
+
+#将print语句替换为一个循环
+'''
+def make_pizza(*toppings):
+	print '\nMaking a pizza with the following toppings: '
+	for topping in toppings:
+		print '-' + topping
+
+make_pizza('pepperroni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+'''
+
+#结合使用位置实参和任意数量实参
+#让函数接受不同类型的实参
+#必须在函数定义中将接纳任意数量实参的形参放在最后
+#python先匹配位置实参和关键字实参，最后剩下来的都给最后一个形参
+'''
+def make_pizza(size, *toppings):
+	print '\nMaking a ' + str(size) + '-inch pizza with following toppings:'
+	for topping in toppings:
+		print '- ' + topping
+		
+make_pizza(16, 'mushrooms')
+make_pizza(32, 'pepperroni', 'green peppers', 'extra cheese')
+'''
+
+#使用任意数量的关键字实参
+#事先不清楚传递给函数的会是什么样的信息
+#这情况下，可以将函数编写成接受任意数量的键-值对
+'''
+def build_profile(first, last, **user_info):
+	profile = {}
+	profile['first_name'] = first
+	profile['last_name'] = last
+	for key, value in user_info.items():
+		profile[key] = value
+	return profile
+
+user_profile = build_profile('zeng', 'xiaoxian', location = 'shanghai', field = 'star')
+print user_profile
+'''
+#函数中形参**user_profile的两个星号
+#让python创建一个名为user_info的空字典
+	
+#感悟
+#在传递函数参数时，
+#形参前面有一个*代表元组，实参是一系列的元素，传递给形参
+#形参前面有两个**代表字典，实参是一系列的键值对，传递给形参
+
+#test
+#8-12
+'''
+def make_pizza(*toppings):
+	print '\nMaking sangwich with the following toppings: '
+	for topping in toppings:
+		print '-' + topping
+		
+make_pizza('rice')
+make_pizza('wirte', 'milk', 'pepperoni')
+'''
+
+#8-14
+'''
+def build_info(maker, type, **car_info):
+	profile = {}
+	profile['car_maker'] = maker
+	profile['car_type'] = type
+	for key, value in car_info.items():
+		profile[key] = value
+	
+	return profile
+	
+car_profile = build_info('bmw', '310', location = 'germon', price = '350000')
+print car_profile
+'''
+#注意**car_info中的键值对的使用，
+#propile[key] = value 
+#其中key是不需要加单引号的
+#alue也不需要加单引号
+
+#第二种表示
+'''
+def build_info(maker, type, **car_info):
+	car_info['car_maker'] = maker
+	car_info['car_type'] = type
+
+	return car_info
+	
+car_profile = build_info('bmw', '310', location = 'germon', price = '350000')
+print car_profile
+'''
+#第二种方式更为简洁，函数中没有创建新的字典，直接用**car_info
+
+#将函数存储在模块中
+
+#函数的优点之一：将主程序和代码分开
+#通过函数指定描述性名称，可让主程序容易理解很多
+#更进一步的话，将函数存储在被称为模块的独立文件中
+#再将模块导入到主程序中
+#import语句允许在当前运行的程序文件中使用模块的代码
+
+#导入整个模块
+'''
+module_name.make_pizza(32, 'mushrooms')
+module_name.make_pizza(12, 'pepperoni', 'mushrooms', 'green peppers')
+'''
+
+#这就是一种导入方法
+#只需要编写一条import语句并在其中指定模块名，
+#就可在程序中使用该模块中的所有函数
+
+#导入特定的函数
+#from module_name import function_name
+#from module_name import function_name0, function_name1, function_name2
+#上面的代码中，可以这样写
+#from module_name import make_pizza
+
+#使用as给函数指定别名
+
+#如果要导入函数的名称，可能与程序中现在有的名称冲突
+#或者函数名称太长
+#可指定间断而独一无二的别名--函数的另一个名称，类似于外号
+#这是模板：
+#from module_name import function_name as fn
+#给上面的函数make_pizza()指定别名mp()
+#from module_name import make_pizza as mp
+
+#mp(16, 'mushrooms')
+#mp(32, 'mushrooms', 'green pepper', 'pepperoni')
+
+#导入模块中的所有函数
+
+#使用星号(*)运算符可以让python导入模块中的所有函数
+#from module_name import *
+#
+#make_pizza(16, 'mushrooms')
+#make_pizza(12, 'pepperoni', 'mushrooms', 'green peppers')
+#星号让python将模块module_name中的每个函数都复制到这个程序文件中
+#由于导入了每个函数，可通过名称来调用每个函数，而无需使用句点表示
+#最好不要这样做，因为，
+#这样做有可能会导致模块中的函数名和项目中的函数名相同，
+#导致意想不到的结果
+#python可能遇到多个名称相同的函数或变量
+#进而覆盖函数，
+#而不是分别导入所有的函数
+#最佳做法是
+#要么导入我们需要使用的函数
+#要么导入整个模块并使用句点表示法，
+#这让代码更清晰、阅读和理解
+
+#函数编写指南
+
+# 每个函数都应包含简要地阐述其功能的注释，
+#该注释应紧跟在函数定义后面，并采用文档字符串格式。
+
+#给形参指定默认值时，等号两边不要有空格:
+#def function_name(parameter_0,parameter_1='default value')
+
+#对于函数调用中的关键字实参，也应遵循这种约定：
+#function_name(value_0,parameter_1='value')
+
+#类
+
+#实例化
+#根据类来创建对象被称为实例化，这可以使用类的实例
+
+#创建和使用类
+#类Dog，指的是任何小狗
+#大多数小狗具有名字和年龄、两种动作（蹲下和打滚）
+#类就是把一类具有共同属性的事物封装到一起，不用重复编写这些程序，
+#编写好类后，需要的时候只需要调用相应的类即可
+
+#创建Dog类
+'''
+class Dog(object):
+#在python中，首字母大写的名称指的是类		
+#这个类定义中括号是空的
+#因为我们要从空白创建这个类
+	#一次模拟小狗的简单尝试
+	#这里是一个文档字符串，对这个类功能进行描述
+	
+	def __init__(self, name, age):
+	#方法__init__（）是一个特殊的方法
+        #每当我们根据 Dog 类创建新实例时，python 都会自动运行它
+        #这个方法名称中，开头与末尾都有两个下划线，
+        #这是一种约定，旨在避免 python 默认方法与普通方法发生名称冲突
+        #该方法有三个形参，self,name,age,
+        #形参self 是必不可少的，而且必须位于其他形参前面
+        #python调用__init__()方法来创建 Dog 实例时，
+        #将自动传入实参self
+        #每个与类相关联的方法调用都自动传递实参self
+        #它是一只指向实例本身的引用，让实例能够访问类中的属性和方法
+        #我们创建 Dog 实例时，python 将调用 Dog 类的方法__init__()
+        #我们将通过实参向 Dog（）传递名字和年龄，self 会自动传递
+        #因此不需要传递它
+                #初始化name和age
+		self.name = name
+		self.age = age
+		#以 self为前缀的变量都可供类的所有方法使用，我们还可以通过类的
+                #任何实例来方位这些变量
+                #self.name=name 获取存储在形参 name 中的值 ，并将其
+                #存储在变量name 中，然后该变量被关联到当前创建的实例
+                #self.age=age 作用与此类似
+                #像这样可通过实例访问的变量称为属性
+
+	def sit(self):
+		#模拟小狗被命令时蹲下
+		print self.name.titel() + ' is now sitting.'
+	
+	def roll_over(self):
+		#模拟小狗被命令打滚
+		print self.name.title() + ' rolled over!'
+'''
+
+#根据类创建实例
+'''
+class Dog(object):
+	#一次模拟小狗的简单尝试
+	
+	def __init__(self, name, age):
+            #初始化name和age
+
+		self.name = name
+		self.age = age
+
+	def sit(self):
+		#模拟小狗被命令时蹲下
+		print self.name.title() + ' is now sitting.'
+	
+	def roll_over(self):
+		#模拟小狗被命令打滚
+		print self.name.title() + ' rolled over!'
+
+my_dog = Dog('willie', 6)
+#这里创建一个名为 willie，年龄为6的小狗
+#python 使用实参willie和6调用 Dog 类中的方法__init__()
+#方法__init__()创建一个表示特定小狗的实例，
+#并使用我们提供的值来设置属性 name 和 age
+#我们将这个实例存储在变量my_dog 中
+#在这里面，命名约定很重要：
+#通常认为首字母大写的名称（如 Dog）指的是类，
+#而小写的名称(my_dog)指的是根据类创建的实例
+
+print "My dog's name is " + my_dog.name.title() + '.'
+print "My dog's name is " + str(my_dog.age) + ' years old.'
+
+#访问属性 my_dog.name
+#访问实例的属性，可使用句点表示法
+#句点表示法在 python 中很常用
+
+#调用方法
+my_dog.sit()
+my_dog.roll_over()
+'''
+
+#创建多个实例
+'''
+class Dog(object):
+	#一次模拟小狗的简单尝试
+	
+	def __init__(self, name, age):
+            #初始化name和age
+
+		self.name = name
+		self.age = age
+
+	def sit(self):
+		#模拟小狗被命令时蹲下
+		print self.name.title() + ' is now sitting.'
+	
+	def roll_over(self):
+		#模拟小狗被命令打滚
+		print self.name.title() + ' rolled over!'
+
+my_dog = Dog('willie', 6)
+your_dog = Dog('lucy', 3)
 
 
+print "My dog's name is " + my_dog.name.title() + '.'
+print "My dog's name is " + str(my_dog.age) + ' years old.'
 
+#调用方法
+my_dog.sit()
+my_dog.roll_over()
+
+print "\nYour dog's name is " + your_dog.name.title() + '.'
+print "Your dog's name is " + str(your_dog.age) + ' years old.'
+
+#调用方法
+your_dog.sit()
+your_dog.roll_over()
+'''
+
+#test
+#9-1
+class Restaurant(object):
+    def __init__(self, restaurant, cuisine_type):
+        self.restaurant = restaurant
+        self.cuisine_type = cuisine_type
+
+    def describe(self):
+        print "\nThe name of the restaurant is " + self.restaurant.title()
+        print 'The type of the retaurant is ' + self.cuisine_type
+
+    def open_restaurant(self):
+        print "The restaurant is openning!"
+
+my_restaurant = Restaurant('shicai', 'sichuan')
+my_restaurant.describe()
+my_restaurant.open_restaurant()
+
+your_restaurant = Restaurant('jinlei', 'haiyang')
+your_restaurant.describe()
+your_restaurant.open_restaurant()
 
 
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
 
 
 
