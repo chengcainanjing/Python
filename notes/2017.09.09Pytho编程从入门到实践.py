@@ -6,7 +6,19 @@
 #Date: 2017-09-09
 #====================
 #import module_name
+
 #from module_name import make_pizza as mp
+
+#from module_car import Car
+
+#from module_car import ElectricCar
+
+#from module_car import Car,ElectricCar
+
+#import module_car
+
+#from module_car import Car
+#from module_ElectricCar import ElectricCar
 
 '''
 #字符串
@@ -1354,6 +1366,652 @@ your_restaurant = Restaurant('jinlei', 'haiyang')
 your_restaurant.describe()
 your_restaurant.open_restaurant()
 
+#2017.09.18
+#使用类和实例
+#如何修改实例的属性
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+			
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+'''
+
+#添加一个随时间变化的属性
+#它存储汽车的总里程
+
+#给属性指定默认值
+#类中每个属性都必须有初始值，哪怕这个值是0或空字符串
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.read_odometer()
+'''
+
+#修改属性的值
+#三种方法：
+#直接通过实例进行修改；
+#通过方法进行设置
+#通过方法进行递增
+
+#直接修改属性的值
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+#下面一行代码是直接修改实例属性的值
+my_new_car.odometer_reading = 23 
+my_new_car.read_odometer()
+'''
+
+#通过方法修改属性的值
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		self.odometer_reading = mileage
+		
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.update_odometer(24)
+my_new_car.read_odometer()
+'''
+
+#对其方法update_odometer()进行一些限制
+#不可以回调
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+			
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.update_odometer(25)
+my_new_car.read_odometer()
+'''
+
+#通过方法对属性的值进行递增
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+	
+	#在class类中定义一个新方法，来递增一个里程值
+	#并将其加上原来的self.odometer_reading
+	def increment_odometer(self, mileage):
+		#禁止增加值为负值
+		if mileage >= 0:
+			self.odometer_reading += mileage
+		else:
+			print "You can't increment the odometer!"
+
+my_new_car = Car('audi', 'a4', 2016)
+print(my_new_car.get_descriptive_name())
+
+my_new_car.update_odometer(25)
+my_new_car.read_odometer()
+
+my_new_car.increment_odometer(1)
+my_new_car.read_odometer()
+'''
+
+#继承
+#编写的类似从另一个现成类的特殊版本，可使用继承
+#一个类继承另一个类
+#他将自动获得另一个类的所有属性和方法
+#原有的类称为父类
+#新类称为子类
+#子类继承父类的所有属性和方法
+#同时还可以定义自己的属性和方法
+
+#子类的方法__init__()
+#创建子类的实例时，python首先需要完成任务是
+#给父类的所有属性赋值
+#因此，子类的方法__init__()需要父类施以援手
+
+#父类也称为超类
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+	
+	#在class类中定义一个新方法，来递增一个里程值
+	#并将其加上原来的self.odometer_reading
+	def increment_odometer(self, mileage):
+		#禁止增加值为负值
+		if mileage >= 0:
+			self.odometer_reading += mileage
+		else:
+			print "You can't increment the odometer!"
+
+#(2)子类			
+class ElectricCar(Car):
+	def __init__(self, make, model,year):
+		#(4)
+		super(ElectricCar, self).__init__(make,model,year)
+
+#(5)		
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+name = my_tesla.get_descriptive_name()
+print name			
+'''
+
+'''
+	首先是Car类的代码。创建子类时，父类必须包含在当前文件中，且位于子类前面。
+	
+	在2处，我们定义了子类ElectricCar。定义子类时，必须在括号内指定父类的名称。
+方法__init__()接受创建Car实例所需的信息。
+	
+	4处的super()是一个特殊函数，帮助Python将父类和子类关联起来，
+这行代码让Python调用ElectricCar的父类的方法__init__()，让ElectricCar实例
+包含父类的所有属性。
+父类也称为超类(supercalss),名称super因此而得名。
+    
+	为测试继承是否能够正确地发挥作用，我们尝试创建一辆电动汽车，
+但提供的信息与创建普通汽车时相同。
+在5处，我们创建ElectricCar类的一个实例，
+并将其存储在变量my_tesla中。
+这行代码调用ElectricCar类中定义的方法__init__()，
+后者让Python调用父类Car中定义的方法__init__()。
+我们提供了实参'tesla','model s'和2016.
+    
+	除方法__init__()外，电动汽车没有其他特有的属性和方法。
+当前，我们只想确认电动汽车具备普通汽车的行为：
+2016 Tesla Model S
+    ElectricCar实例的行为与Car实例一样，
+现在可以开始定义电动汽车特有的属性和方法了。
+'''
+
+'''
+在Python2.7中，继承语法稍有不同，ElectricCar类的定义类似与下面这样：
+class Car(obiect):
+　　def __init__(self,make,model,year):
+class ElectricCar(Car):
+　　def __init__(self,make,model,year):
+　　　　super(ElectricCar,self).__init__(make,model,year)
+super()函数需要两个实参：子类名和对象self。
+为帮助Python将父类和子类关联起来，这些实参必不可少。
+另外，在Python2.7中使用继承时，务必在父类时在括号内指定object。
+'''
+
+#给子类定义属性和方法
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+	
+	#在class类中定义一个新方法，来递增一个里程值
+	#并将其加上原来的self.odometer_reading
+	def increment_odometer(self, mileage):
+		#禁止增加值为负值
+		if mileage >= 0:
+			self.odometer_reading += mileage
+		else:
+			print "You can't increment the odometer!"
+
+#(2)子类			
+class ElectricCar(Car):
+	def __init__(self, make, model,year):
+		#(4)
+		super(ElectricCar, self).__init__(make,model,year)
+		#添加子类的新属性，并设置其初始值（70）
+		#根据ElectricCar类创建的所有实例都将包含这个属性
+		#但所有Car实例都不包含它
+		self.battery = 70
+	
+	def describe_battery(self):
+		print "This car has a " + str(self.battery) + "-kwh battery."
+		
+#(5)		
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+name = my_tesla.get_descriptive_name()
+print name			
+
+my_tesla.describe_battery()
+'''
+
+#重写父类的方法
+#对于父类的方法，只要不符合子类模拟的实物的行为，都可以对其进行重写
+#因此，可在子类中定义一个这样的方法，即它与要重写的父类方法同名
+#这样，python将不会考虑这个父类的方法，而知关注你在子类中定义的相应方法
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+	
+	#在class类中定义一个新方法，来递增一个里程值
+	#并将其加上原来的self.odometer_reading
+	def increment_odometer(self, mileage):
+		#禁止增加值为负值
+		if mileage >= 0:
+			self.odometer_reading += mileage
+		else:
+			print "You can't increment the odometer!"
+
+	def fill_gas_tank(self):
+		print  self.make.title() + " needs a gas."
+		
+	
+#(2)子类			
+class ElectricCar(Car):
+	def __init__(self, make, model,year):
+		#(4)
+		super(ElectricCar, self).__init__(make,model,year)
+		#添加子类的新属性，并设置其初始值（70）
+		#根据ElectricCar类创建的所有实例都将包含这个属性
+		#但所有Car实例都不包含它
+		self.battery = 70
+	
+	def describe_battery(self):
+		print "This car has a " + str(self.battery) + "-kwh battery."
+	
+	def fill_gas_tank(self):
+		#电动车没有油箱,重写父类的方法
+		print  self.make.title() + " doesn't need a gas."
+
+#(5)	
+my_new_car = Car('audi', 'a4', 2014)	
+print my_new_car.get_descriptive_name()
+my_new_car.fill_gas_tank()
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+print my_tesla.get_descriptive_name()		
+my_tesla.describe_battery()
+my_tesla.fill_gas_tank()
+'''
+
+#将实例用作属性
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+	
+	#在class类中定义一个新方法，来递增一个里程值
+	#并将其加上原来的self.odometer_reading
+	def increment_odometer(self, mileage):
+		#禁止增加值为负值
+		if mileage >= 0:
+			self.odometer_reading += mileage
+		else:
+			print "You can't increment the odometer!"
+
+	def fill_gas_tank(self):
+		print  self.make.title() + " needs a gas."
+		
+#将一个类作为属性
+#定义一个名为Battery的新类
+#没有继承任何类
+class Battery():
+	#方法__init__()除了self外，还有一个形参battery_size,设定了默认值
+	def __init__(self, battery_size=70):
+		self.battery_size = battery_size
+	
+	def describe_battery(self):
+		print "This car has a " + str(self.battery_size) + "-kwh battery."
+						
+class ElectricCar(Car):
+	def __init__(self, make, model,year):
+		super(ElectricCar, self).__init__(make,model,year)
+		#在ElectricCar类中，添加一个self.battery属性
+		#这行代码让python创建一个新的Battery实例，
+		#并将该实例存储在属性self.battery中，
+		#每当方法__init__()被调用时，都将执行该操作
+		#因此现在每个ElectricCar实例都包含一个自动创建的Battery实例
+		self.battery = Battery()
+		
+	def fill_gas_tank(self):
+		#电动车没有油箱,重写父类的方法
+		print  self.make.title() + " doesn't need a gas."
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+
+print my_tesla.get_descriptive_name()
+my_tesla.battery.describe_battery()
+#上面这行代码让python在实例my_tesla中查找属性battery
+#并对存储在该属性下的battery实例调用方法describe_battery()
+'''
+
+#下面给Battery类添加一个方法，根据电瓶容量报告汽车的续航里程
+'''
+class Car(object):
+	def __init__(self, make, model, year):
+		#初始化描述汽车的属性
+		self.make = make
+		self.model = model
+		self.year = year
+		self.odometer_reading = 0
+		
+	def get_descriptive_name(self):
+		long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+		return long_name.title()
+	
+	def read_odometer(self):
+		print 'This car has ' + str(self.odometer_reading) + ' miles on it.'
+	
+	#在class类中定义一个新方法，来接受一个里程值
+	#并将其存储在self.odometer_reading中
+	def update_odometer(self, mileage):
+		#在此处添加一个if条件语句，
+		#判断mileage与self.odometer_reading大小
+		#限制其回调
+		if mileage > self.odometer_reading:
+			self.odometer_reading = mileage
+		else:
+			print "You can't roll back on odometer!"
+	
+	#在class类中定义一个新方法，来递增一个里程值
+	#并将其加上原来的self.odometer_reading
+	def increment_odometer(self, mileage):
+		#禁止增加值为负值
+		if mileage >= 0:
+			self.odometer_reading += mileage
+		else:
+			print "You can't increment the odometer!"
+
+	def fill_gas_tank(self):
+		print  self.make.title() + " needs a gas."
+		
+#将一个类作为属性
+#定义一个名为Battery的新类
+#没有继承任何类
+class Battery(object):
+	#方法__init__()除了self外，还有一个形参battery_size,设定了默认值
+	def __init__(self, battery_size=70):
+		self.battery_size = battery_size
+	
+	def describe_battery(self):
+		print "This car has a " + str(self.battery_size) + "-kwh battery."
+
+	def get_range(self):
+		if self.battery_size == 70:
+			range = 240
+		elif self.battery_size == 85:
+			range = 270
+		
+		message = "This car can go approximately " + str(range)
+		message += " miles on a full charge."
+		print message
+		
+class ElectricCar(Car):
+	def __init__(self, make, model,year):
+		super(ElectricCar, self).__init__(make,model,year)
+		#在ElectricCar类中，添加一个self.battery属性
+		#这行代码让python创建一个新的Battery实例，
+		#并将该实例存储在属性self.battery中，
+		#每当方法__init__()被调用时，都将执行该操作
+		#因此现在每个ElectricCar实例都包含一个自动创建的Battery实例
+		self.battery = Battery()
+		
+	def fill_gas_tank(self):
+		#电动车没有油箱,重写父类的方法
+		print  self.make.title() + " doesn't need a gas."
+
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+
+my_tesla.battery.battery_size = 85
+print my_tesla.get_descriptive_name()
+my_tesla.battery.describe_battery()
+
+my_tesla.battery.get_range()
+'''
+
+#导入单个类
+#关联的文件名是module_car
+#from module_car import Car
+'''
+my_new_car = Car('audi', 'a4', 2016)
+print my_new_car.get_descriptive_name()
+
+my_new_car.update_odometer(25)
+my_new_car.read_odometer()
+'''
+
+#在一个模块中存储多个类
+#关联文件名是module_car
+#from module_car import ElectricCar
+'''
+my_tesla = ElectricCar('tesla', 'model s', 2016)
+
+print my_tesla.get_descriptive_name()
+my_tesla.battery.battery_size = 85
+my_tesla.battery.describe_battery()
+my_tesla.battery.get_range()
+'''
+
+#从一个模块中导入多个类
+#from module_car import Car,ElectricCar实例的行为与Car实例一样
+'''
+my_beetle = Car('volkswagen', 'beetle', 2016)
+print my_beetle.get_descriptive_name()
+
+my_tesla = ElectricCar('tesla', 'medel s', 2016)
+print my_tesla.get_descriptive_name()
+'''
+
+#导入整个模块
+#import module_car
+'''
+my_beetle = module_car.Car('volkswagen', 'beetle', 2016)
+print my_beetle.get_descriptive_name()
+
+my_tesla = module_car.ElectricCar('tesla', 'medel s', 2016)
+print my_tesla.get_descriptive_name()
+'''
+
+#导入模块中的所有类
+#from module_name import *
+#不推荐这种导入方式
+#这里之所以介绍这种导入方式，是因为虽然不推荐这种方式，
+#但我们可能会在别人编写的代码中见到它。
+#需要从一个模块中导入很多类时，最好导入整个模块，
+#并使用module_name.class_name语法来访问类。
+#这样做时，虽然文件开头并没有列出用到的所有类
+#但我们清楚地知道在程序的哪些地方使用了导入的模块；
+#我们还避免了导入模块中的每个类可能引发的名称冲突。
+
+#在一个模块中导入另一个模块
+#在文件名为：module_ElectricCar.py中，
+#from module_car import Car
+#在此文件中头部加入
+#from module_car import Car
+#from module_ElectricCar import ElectricCar
+'''
+my_beetle = Car('volkswagen', 'beetle', 2016)
+print my_beetle.get_descriptive_name()
+
+my_tesla = ElectricCar('tesla', 'medel s', 2016)
+print my_tesla.get_descriptive_name()
+'''
+
+#自定义工作流程
 
  
 
