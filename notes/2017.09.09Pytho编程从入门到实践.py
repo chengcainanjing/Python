@@ -2013,7 +2013,73 @@ print my_tesla.get_descriptive_name()
 
 #自定义工作流程
 
- 
+ #Python标准库
+#   Python标准库是一组模块，安装Python都包含它。
+#我们现在对类的工作原理已有大致的了解，可以开始使用其他程序员编写好的模块了。
+#可使用标准库中的任何函数和类，为此只需在程序开头包含一条简单的import语句。
+#下面来看模块collections中的一个类——OrderedDict。
+#文件头部添加:
+#from collections import OrderedDict
+'''
+favorite_languages = OrderedDict()
+
+favorite_languages['jen'] = 'python'
+favorite_languages['sarah'] = 'C'
+favorite_languages['edward'] = 'ruby'
+favorite_languages['phil'] = 'python'
+
+for name,language in favorite_languages.items():
+	print name.title() + "'s favorite language is " + language.title() + '.'
+	
+print favorite_languages
+'''
+
+#test
+#9-14
+#from random import randint
+'''
+class Die(object):
+	#模拟随机在掷骰子
+	def __init__(self, sides=6):
+		#初始化骰子基本属性
+		self.sides = sides
+		
+	def roll_die(self, number):
+		#打印位于1和骰子面之间的随机数，并掷10次
+		random_numbers = []
+		for i in range(number):
+			random_number = randint(1, self.sides)
+			print random_number
+			random_numbers.append(random_number)
+		print random_numbers
+		print '\n'
+
+dice_number = Die(6)
+dice_number.roll_die(10)
+
+dice_number = Die(10)
+dice_number.roll_die(10)
+
+dice_number = Die(20)
+dice_number.roll_die(10)			
+'''
+	
+#类编码风格
+
+#	类名应采用驼峰命名法，即将类名中的每个单词的首字母都大写，而不使用下划线。
+#实例名和模块名都采用小写风格，并在单词之间加上下划线。
+#实例名和模块名都采用小写格式，并在单词之间加上下划线。
+#   对于每个类，都应紧跟在类定义后面包含一个文档字符串。
+#这种文档字符串简要地描述类的功能，并遵循编写函数的文档字符串时采用的格式约定。
+#每个模块也都应包含一个文档字符串，对其中的类可用于做什么进行描述。
+#   可使用空行来组织代码，但不要滥用。
+#在类中，可使用一个空行来来分隔方法；而在模块中，可使用两个空行来分隔类。
+#   需要同时导入标准库的模块和我们编写的模块时，
+#先编写导入标准库模块的import语句的程序中，再添加一个空行，
+#然后编写导入我们自己编写的模块的import语句。
+#在包含多条import语句的程序中，
+#这种做法让人更容易明白程序使用的各个模块都来自何方。			
+
 
 
 
