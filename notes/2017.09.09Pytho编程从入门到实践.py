@@ -1346,6 +1346,7 @@ your_dog.roll_over()
 
 #test
 #9-1
+'''
 class Restaurant(object):
     def __init__(self, restaurant, cuisine_type):
         self.restaurant = restaurant
@@ -1365,6 +1366,7 @@ my_restaurant.open_restaurant()
 your_restaurant = Restaurant('jinlei', 'haiyang')
 your_restaurant.describe()
 your_restaurant.open_restaurant()
+'''
 
 #2017.09.18
 #使用类和实例
@@ -2080,139 +2082,60 @@ dice_number.roll_die(10)
 #在包含多条import语句的程序中，
 #这种做法让人更容易明白程序使用的各个模块都来自何方。			
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#文件与异常
+'''
+with open('pi_digits.txt') as file_object:
+    contents = file_object.read()
+    print contents.rstrip()
+'''
+
+#文件路径
+'''
+with open('/Users/chengcai/Documents/GitHub/Python/pi_digits.txt') as file_object:
+    contents = file_object.read()
+    print contents.rstrip()
+'''
+
+#逐行读取
+'''
+filename = 'pi_digits.txt'
+
+with open(filename) as file_object:
+    for line in lines:
+    print line
+'''
+
+#创建一个包含文件各行内容的列表
+'''
+filename = 'pi_digits.txt'
+
+with open(filename) as file_object:
+    lines = file_object.readlines()
+ 
+for line in lines:
+    print line.rstrip()
+'''
+#使用文件内容
+
+filename = 'pi_digits.txt'
+
+with open(filename) as file_object:
+    lines = file_object.readlines()
+
+pi_string = ''
+for line in lines:
+    pi_string += line.strip()
+
+print pi_string
+print len(pi_string)
+
+
+
+'''
+
+birthday = input("Enter your birthday, in the form mmddyy: ")
+if birthday in pi_string:
+    print("Your birthday appears in the first million digits of pi!")
+else:
+    print("Your birthday does not appear in the first million digits of pi.")
+'''
