@@ -2391,17 +2391,21 @@ print numbers
 #保存和读取用户生成的数据
 #import os
 #import json
+
 numbers = [1, 2, 4, 6, 9, 11, 15]
 
 path = os.path.dirname(__file__)
 print path
-filename = path + '/test.txt'
+#filename = path + '/test.txt'
+
+filename = 'test.txt'
 
 with open(filename, 'r') as f_obj:
 	contents = f_obj.readlines()
 	print contents
 
-filename = path + '/numbers.json'
+#filename = path + '/numbers.json'
+filename= 'numbers.json'
 
 with open(filename, 'w') as f_obj:
 	json.dump(numbers, f_obj)	
@@ -2415,7 +2419,7 @@ with open(filename, 'r') as f_obj:
 	numbers = json.load(f_obj)
 
 print numbers
-	
+
 		
 		
 
