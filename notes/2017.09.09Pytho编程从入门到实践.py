@@ -2273,6 +2273,75 @@ for line in lines:
 '''
 
 #写入文件
+'''
+#import os
+path = os.path.dirname(__file__)
+print '当前文件所在目录：' + path
+
+filename = path + '\write_message.py'
+with open(filename, 'w') as file_object:
+	file_object.write('I love programming.\n')
+	file_object.write('I love creating new game.\n')
+'''
+
+	
+#附加到文件
+'''	
+#import os
+path = os.path.dirname(__file__)
+print '当前文件所在目录：' + path
+
+filename = path + '\write_message.py'
+with open(filename, 'a') as file_object:
+	file_object.write('I also like playing pingpang.\n')
+	file_object.write('I like creating apps that can run in a browser.\n')
+'''
+	
+#test 
+#10-3
+'''
+#import os
+path = os.path.dirname(__file__)
+print '当前文件所在目录：' + path
+
+filename = path + '\write_message.py'
+with open(filename, 'a') as file_object:
+	message = '如果输入为：quit，则退出！\n'
+	message += '请输入名字：'
+	
+	while True:
+		add_string = raw_input(message) 
+		if add_string == 'quit':
+			break
+		else:
+			file_object.write(add_string+'\n')
+'''
+
+#10-4
+'''
+#import os
+path = os.path.dirname(__file__)
+print '当前文件所在目录：' + path
+
+filename = path + '\write_message.py'
+with open(filename, 'a') as file_object:
+	message = '如果输入为：quit，则退出！\n'
+	message += '请输入名字：'
+	
+	while True:
+		add_string = raw_input(message) 
+		if add_string == 'quit':
+			break
+		else:
+			guest = 'Hello, ' + add_string.title() + '.\n'
+			file_object.write(guest)
+'''
+
+#异常
+#python		
+
+		
+		
 
 
 
