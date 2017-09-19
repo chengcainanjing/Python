@@ -2117,7 +2117,7 @@ for line in lines:
 '''
 
 #使用文件内容
-
+'''
 filename = 'pi_digits.txt'
 
 with open(filename) as file_object:
@@ -2129,6 +2129,7 @@ for line in lines:
 
 print pi_string
 print len(pi_string)
+'''
 
 #包含一个百万位的大型文件
 
