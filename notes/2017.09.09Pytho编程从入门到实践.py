@@ -20,6 +20,7 @@
 #from module_car import Car
 #from module_ElectricCar import ElectricCar
 
+
 '''
 #字符串
 string = 'This is a string'
@@ -2340,6 +2341,75 @@ with open(filename, 'a') as file_object:
 #异常
 #python		
 
+#存储数据
+#用户关闭程序时，我们几乎总是要保存他们提供的信息：
+#一种简单的方式是使用模块json来存储数据
+
+
+#使用json.dump()和json.load()
+#import os
+#import json
+#使用函数json.dump()将数字列表存储到文件numbers.json中
+'''
+numbers = [1, 2, 4, 6, 9, 11, 15]
+
+path = os.path.dirname(__file__)
+print path
+filename = path + '/test.txt'
+
+with open(filename, 'r') as f_obj:
+	contents = f_obj.readlines()
+	print contents
+
+filename = path + '/numbers.json'
+
+with open(filename, 'w') as f_obj:
+	json.dump(numbers, f_obj)
+'''
+
+#使用json.load()将上面代码创建的number.json文件的这个列表读取到内存中
+#import os
+#import json
+'''
+path = os.path.dirname(__file__)
+print path
+
+filename = path + '/numbers.json'
+
+with open(filename, 'r') as f_obj:
+	numbers = json.load(f_obj)
+
+print numbers
+'''
+
+#保存和读取用户生成的数据
+#import os
+#import json
+numbers = [1, 2, 4, 6, 9, 11, 15]
+
+path = os.path.dirname(__file__)
+print path
+filename = path + '/test.txt'
+
+with open(filename, 'r') as f_obj:
+	contents = f_obj.readlines()
+	print contents
+
+filename = path + '/numbers.json'
+
+with open(filename, 'w') as f_obj:
+	json.dump(numbers, f_obj)	
+	
+path = os.path.dirname(__file__)
+print path
+
+filename = path + '/numbers.json'
+
+with open(filename, 'r') as f_obj:
+	numbers = json.load(f_obj)
+
+print numbers
+	
 		
 		
 
