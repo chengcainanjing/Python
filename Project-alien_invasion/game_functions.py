@@ -1,4 +1,10 @@
 #coding=utf-8
+ 
+#====================
+#File: game_functions.py
+#Author: Cheng Cai
+#Date: 2017-09-20
+#====================
 
 import sys
 

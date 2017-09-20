@@ -1,4 +1,10 @@
 #coding=utf-8
+ 
+#====================
+#File: settings.py
+#Author: Cheng Cai
+#Date: 2017-09-20
+#====================
 
 class Settings():
     #存储《外星人入侵》的所有设置的类

@@ -1,5 +1,11 @@
 #coding=utf-8
 
+#====================
+#File: alien_invasion.py
+#Author: Cheng Cai
+#Date: 2017-09-20
+#====================
+
 import pygame
 from pygame.sprite import Group
 
@@ -12,7 +18,8 @@ def run_game():
     #初始化游戏并创建一个屏幕对象
     pygame.init()
     ai_settings = Settings()
-    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
+    screen = pygame.display.set_mode((ai_settings.screen_width,\
+            ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 	
     #设置背景色

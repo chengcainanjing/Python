@@ -1,5 +1,11 @@
 #coding=utf-8
 
+#====================
+#File: ship.py
+#Author: Cheng Cai
+#Date: 2017-09-20
+#====================
+
 import pygame
 
 #import os
