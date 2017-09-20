@@ -4,6 +4,8 @@ import sys
 
 import pygame
 
+def check_keydown_events(event,ship)
+
 def check_events(ship):
 	#监视键盘和鼠标事件
 	for event in pygame.event.get():
