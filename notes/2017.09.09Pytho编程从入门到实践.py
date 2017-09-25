@@ -353,7 +353,7 @@ print '\nModified dimensions:'
 for dimension in dimensions:
     print dimension
 
-#字典
+#
 #字典是一系列建--值对
 #每个键都与一个值相关联
 #字典用花括号将一系列的键--值对表示
@@ -440,8 +440,14 @@ print "\nNew x_position: " + str(alien_1['x_position'])
 alien_0 = {'color':'green','points':5}
 print alien_0
 
+#单独删除一个键值对
 del alien_0['points']
 print alien_0
+
+#删除所有键值对
+alien_0.clear()
+>>>alien_0
+{}
 
 #由类似对象组成的字典
 favorite_languages = {'jen':'python',
