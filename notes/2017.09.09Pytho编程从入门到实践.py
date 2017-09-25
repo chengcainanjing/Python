@@ -117,6 +117,14 @@ age = 27
 message = "Happy " + str(age) + "rd Brithday!"
 print message
 
+#变量引用
+#一次赋多值
+'''
+v=('a', 'b', 'c')
+(x, y, z) = v
+#一一对应， x = 'a', y = 'b', z = 'c'
+'''
+
 #列表
 #有一系列特定顺序排列的元素组成
 #用方括号[] 表示列表，并用逗号来分隔其中的元素
@@ -142,7 +150,6 @@ names[0] = 'caiyuntao'
 print names
 
 #在列表中添加元素
-
 #在列表末尾添加元素
 names.append('chengcai')
 print names
@@ -151,6 +158,47 @@ print names
 #insert 方法可以在列表的任何位置插入元素
 names.insert(1, 'panqiaoxu')
 print names
+
+# extend (扩展) 与 append (追加) 的差别
+'''
+>>> li = ['a', 'b', 'c']
+>>> li.extend(['d', 'e', 'f']) 1
+>>> li
+['a', 'b', 'c', 'd', 'e', 'f']
+>>> len(li)                    2
+6
+>>> li[-1]
+'f'
+>>> li = ['a', 'b', 'c']
+>>> li.append(['d', 'e', 'f']) 3
+>>> li
+['a', 'b', 'c', ['d', 'e', 'f']]
+>>> len(li)                    4
+4
+>>> li[-1]
+['d', 'e', 'f']
+
+1Lists 的两个方法 extend 和 append 看起来类似，但实际上完全不同。
+extend 接受一个参数，这个参数总是一个 list，
+并且把这个 list 中的每个元素添加到原 list 中。
+2在这里 list 中有 3 个元素 ('a'、'b' 和 'c')，
+并且使用另一个有 3 个元素 ('d'、'e' 和 'f') 的 list 扩展之，
+因此新的 list 中有 6 个元素。
+3另一方面，append 接受一个参数，这个参数可以是任何数据类型，
+并且简单地追加到 list 的尾部。
+在这里使用一个含有 3 个元素的 list 参数调用 append 方法。
+4原来包含 3 个元素的 list 现在包含 4 个元素。
+为什么是 4 个元素呢？因为刚刚追加的最后一个元素本身是个 list。
+List 可以包含任何类型的数据，也包括其他的 list。这或许是您所要的结果，或许不是。
+如果您的意图是 extend，请不要使用 append。
+'''
+
+#在列表中链接列表
+names.extend(['two', 'one'])
+'''
+>>>names
+['chengcai', 'daiyumu', 'luwangpeng', 'wuyufei', 'two', 'one']
+'''
 
 #从列表中删除元素
 #使用 del 语句来删除元素
@@ -173,6 +221,28 @@ print names
 names.remove('caiyuntao')
 print names
 #注意，该方法只能删除第一个指定的值，如果需要删除的值，多次出现，需要多次删除
+
+#运算符
+'''
+>>> li = ['a', 'b', 'mpilgrim']
+>>> li = li + ['example', 'new'] 1
+>>> li
+['a', 'b', 'mpilgrim', 'example', 'new']
+>>> li += ['two']                2
+>>> li
+['a', 'b', 'mpilgrim', 'example', 'new', 'two']
+>>> li = [1, 2] * 3              3
+>>> li
+[1, 2, 1, 2, 1, 2]
+1Lists 也可以用 + 运算符连接起来。
+list = list + otherlist 相当于 list.extend(otherlist)。
+但 + 运算符把一个新 (连接后) 的 list 作为值返回，而 extend 只修改存在的 list。
+也就是说，对于大型 list 来说，extend 的执行速度要快一些。
+2Python 支持 += 运算符。li += ['two'] 等同于 li.extend(['two'])。
++= 运算符可用于 list、字符串和整数，并且它也可以被重载用于用户自定义的类中 。
+3* 运算符可以作为一个重复器作用于 list。
+li = [1, 2] * 3 等同于 li = [1, 2] + [1, 2] + [1, 2]，即将三个 list 连接成一个。
+'''
 
 # 组织列表
 #使用方法 sort（）对列表进行永久性排序,且是按照字母顺序排列
