@@ -24,8 +24,8 @@
 
 #from random import randint
 
-import os
-import json
+#import os
+#import json
 
 '''
 #字符串
@@ -44,6 +44,61 @@ print string
 
 string = "One of Python's strengths is its diverse and supportive community."
 print string
+
+字符串是以单引号'或双引号"括起来的任意文本，比如'abc'，"xyz"等等。
+请注意，''或""本身只是一种表示方式，不是字符串的一部分，因此，字符串'abc'只有a，b，c这3个字符。
+如果'本身也是一个字符，那就可以用""括起来，比如"I'm OK"包含的字符是I，'，m，空格，O，K这6个字符。
+
+如果字符串内部既包含'又包含"怎么办？可以用转义字符\来标识，比如：
+
+#'I\'m \"OK\"!'
+表示的字符串内容是：
+
+#I'm "OK"!
+转义字符\可以转义很多字符，比如\n表示换行，\t表示制表符，字符\本身也要转义，所以\\表示的字符就是\，
+可以在Python的交互式命令行用print()打印字符串看看：
+
+'''
+>>> print('I\'m ok.')
+I'm ok.
+>>> print('I\'m learning\nPython.')
+I'm learning
+Python.
+>>> print('\\\n\\')
+\
+\
+'''
+
+#你可能猜到了，%运算符就是用来格式化字符串的。
+#在字符串内部，%s表示用字符串替换，%d表示用整数替换，有几个%?占位符，后面就跟几个变量或者值，顺序要对应好。
+#如果只有一个%?，括号可以省略。
+
+#常见的占位符有：
+
+#%d	整数
+#%f	浮点数
+#%s	字符串
+#%x	十六进制整数
+#其中，格式化整数和浮点数还可以指定是否补0和整数与小数的位数：
+
+'''
+>>> '%2d-%02d' % (3, 1)
+' 3-01'
+>>> '%.2f' % 3.1415926
+'3.14'
+'''
+#如果你不太确定应该用什么，%s永远起作用，它会把任何数据类型转换为字符串：
+
+'''
+>>> 'Age: %s. Gender: %s' % (25, True)
+'Age: 25. Gender: True'
+#有些时候，字符串里面的%是一个普通字符怎么办？这个时候就需要转义，用%%来表示一个%：
+'''
+
+'''
+>>> 'growth rate: %d %%' % 7
+'growth rate: 7 %'
+'''
 
 #使用方法修改字符串大小写
 name = "add lovelace"
@@ -117,7 +172,24 @@ age = 27
 message = "Happy " + str(age) + "rd Brithday!"
 print message
 
-#列表
+#变量引用
+#一次赋多值
+'''
+v=('a', 'b', 'c')
+(x, y, z) = v
+#一一对应， x = 'a', y = 'b', z = 'c'
+'''
+
+#空值
+#用None表示
+#空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。
+
+
+
+
+
+
+#列表(list)
 #有一系列特定顺序排列的元素组成
 #用方括号[] 表示列表，并用逗号来分隔其中的元素
 bicycles = ['trek', 'cannondale', 'redline', 'specialized']
@@ -142,7 +214,6 @@ names[0] = 'caiyuntao'
 print names
 
 #在列表中添加元素
-
 #在列表末尾添加元素
 names.append('chengcai')
 print names
@@ -151,6 +222,48 @@ print names
 #insert 方法可以在列表的任何位置插入元素
 names.insert(1, 'panqiaoxu')
 print names
+
+# extend (扩展) 与 append (追加) 的差别
+'''
+>>> li = ['a', 'b', 'c']
+>>> li.extend(['d', 'e', 'f']) 1
+>>> li
+['a', 'b', 'c', 'd', 'e', 'f']
+>>> len(li)                    2
+6
+>>> li[-1]
+'f'
+>>> li = ['a', 'b', 'c']
+>>> li.append(['d', 'e', 'f']) 3
+>>> li
+['a', 'b', 'c', ['d', 'e', 'f']]
+>>> len(li)                    4
+4
+>>> li[-1]
+['d', 'e', 'f']
+
+1Lists 的两个方法 extend 和 append 看起来类似，但实际上完全不同。
+extend 接受一个参数，这个参数总是一个 list，
+并且把这个 list 中的每个元素添加到原 list 中。
+2在这里 list 中有 3 个元素 ('a'、'b' 和 'c')，
+并且使用另一个有 3 个元素 ('d'、'e' 和 'f') 的 list 扩展之，
+因此新的 list 中有 6 个元素。
+3另一方面，append 接受一个参数，这个参数可以是任何数据类型，
+并且简单地追加到 list 的尾部。
+在这里使用一个含有 3 个元素的 list 参数调用 append 方法。
+4原来包含 3 个元素的 list 现在包含 4 个元素。
+为什么是 4 个元素呢？因为刚刚追加的最后一个元素本身是个 list。
+List 可以包含任何类型的数据，也包括其他的 list。这或许是您所要的结果，或许不是。
+如果您的意图是 extend，请不要使用 append。
+'''
+
+#在列表中链接列表
+names.extend(['two', 'one'])
+
+'''
+>>>names
+['chengcai', 'daiyumu', 'luwangpeng', 'wuyufei', 'two', 'one']
+'''
 
 #从列表中删除元素
 #使用 del 语句来删除元素
@@ -174,8 +287,30 @@ names.remove('caiyuntao')
 print names
 #注意，该方法只能删除第一个指定的值，如果需要删除的值，多次出现，需要多次删除
 
+#运算符
+'''
+>>> li = ['a', 'b', 'mpilgrim']
+>>> li = li + ['example', 'new'] 1
+>>> li
+['a', 'b', 'mpilgrim', 'example', 'new']
+>>> li += ['two']                2
+>>> li
+['a', 'b', 'mpilgrim', 'example', 'new', 'two']
+>>> li = [1, 2] * 3              3
+>>> li
+[1, 2, 1, 2, 1, 2]
+1 Lists 也可以用 + 运算符连接起来。
+list = list + otherlist 相当于 list.extend(otherlist)。
+但 + 运算符把一个新 (连接后) 的 list 作为值返回，而 extend 只修改存在的 list。
+也就是说，对于大型 list 来说，extend 的执行速度要快一些。
+2 Python 支持 += 运算符。li += ['two'] 等同于 li.extend(['two'])。
++= 运算符可用于 list、字符串和整数，并且它也可以被重载用于用户自定义的类中 。
+3 * 运算符可以作为一个重复器作用于 list。
+li = [1, 2] * 3 等同于 li = [1, 2] + [1, 2] + [1, 2]，即将三个 list 连接成一个。
+'''
+
 # 组织列表
-#使用方法 sort（）对列表进行永久性排序,且是按照字母顺序排列
+# 使用方法 sort（）对列表进行永久性排序,且是按照字母顺序排列
 cars = ['bmw', 'audi', 'toyota', 'subaru']
 print "\nHere is the original list: "
 print cars
@@ -328,7 +463,7 @@ print my_foods
 print '\nMy friend favourite foods are:'
 print friend_foods
  
-#元组
+#元组(tuple)
 #不可以修改元素，列表可以修改元素
 # 元组是用圆括号来定义
 dimensions = (200, 50)
@@ -353,7 +488,7 @@ print '\nModified dimensions:'
 for dimension in dimensions:
     print dimension
 
-#字典
+#字典（dictionary）
 #字典是一系列建--值对
 #每个键都与一个值相关联
 #字典用花括号将一系列的键--值对表示
@@ -434,14 +569,40 @@ elif alien_1['speed'] == 'fast':
 alien_1['x_position'] = alien_1['x_position'] + x_increment
 print "\nNew x_position: " + str(alien_1['x_position'])
 
+'''
+#要避免key不存在的错误，有两种办法，
+#一是通过in判断key是否存在：
+
+>>> 'Thomas' in d
+False
+二是通过dict提供的get方法，如果key不存在，可以返回None，或者自己指定的value：
+
+>>> d.get('Thomas')
+>>> d.get('Thomas', -1)
+-1
+注意：返回None的时候Python的交互式命令行不显示结果。
+'''
+
 #删除键-值对
 #可使用del语句
 #使用时必须指定字典名和要删除的键
 alien_0 = {'color':'green','points':5}
 print alien_0
 
+#单独删除一个键值对
 del alien_0['points']
 print alien_0
+
+#删除一个key也可使用pop(key)，对应的value也会被删除
+alien_0['color']
+print alien_0
+
+#删除所有键值对
+'''
+alien_0.clear()
+>>>alien_0
+{}
+'''
 
 #由类似对象组成的字典
 favorite_languages = {'jen':'python',
@@ -512,6 +673,26 @@ for language in favorite_languages.values():
 print '\nThe following languages have been mentioned:'
 for language in set(favorite_languages.values()):
     print language.title()
+
+'''
+和list比较，dict有以下几个特点：
+
+查找和插入的速度极快，不会随着key的增加而变慢；
+需要占用大量的内存，内存浪费多。
+而list相反：
+
+查找和插入的时间随着元素的增加而增加；
+占用空间小，浪费内存很少。
+所以，dict是用空间来换取时间的一种方法。
+
+dict可以用在需要高速查找的很多地方，在Python代码中几乎无处不在，正确使用dict非常重要，需要牢记的第一条就是dict的key必须是不可变对象。
+
+这是因为dict根据key来计算value的存储位置，如果每次计算相同的key得出的结果不同，那dict内部就完全混乱了。这个通过key计算位置的算法称为哈希算法（Hash）。
+
+要保证hash的正确性，作为key的对象就不能变。在Python中，字符串、整数等都是不可变的，因此，可以放心地作为key。而list是可变的，就不能作为key：
+'''
+
+
 
 # 嵌套
 #将一系列字典存储在列表中，或
@@ -1099,7 +1280,7 @@ def build_profile(first, last, **user_info):
 user_profile = build_profile('zeng', 'xiaoxian', location = 'shanghai', field = 'star')
 print user_profile
 '''
-#函数中形参**user_profile的两个星号
+#函数中形参**user_profile的两个星号代表
 #让python创建一个名为user_info的空字典
 	
 #感悟
