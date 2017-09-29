@@ -413,7 +413,7 @@ print sum(digits)
 squares = [value**2 for value in range(1, 11)]
 print squares
 
-#切片
+#切片(slice)
 players = ['charles', 'martina', 'michael', 'florence', 'eli']
 print "\n前三个元素是：{}".format(players[0:3])
 print "\n第二个元素到第四个元素是：{}".format(players[1:4])
@@ -1331,6 +1331,130 @@ car_profile = build_info('bmw', '310', location = 'germon', price = '350000')
 print car_profile
 '''
 #第二种方式更为简洁，函数中没有创建新的字典，直接用**car_info
+
+#递归函数
+#如果一个函数在内部调用自身本身，这个函数就是递归函数
+#计算阶乘n!
+'''
+def fact(n)：
+	 if n == 1:
+		return 1
+	return n * fact(n - 1)
+fact(5)
+'''
+
+#如果我们计算fact(5)，可以根据函数定义看到计算过程如下：
+'''
+===> fact(5)
+===> 5 * fact(4)
+===> 5 * (4 * fact(3))
+===> 5 * (4 * (3 * fact(2)))
+===> 5 * (4 * (3 * (2 * fact(1))))
+===> 5 * (4 * (3 * (2 * 1)))
+===> 5 * (4 * (3 * 2))
+===> 5 * (4 * 6)
+===> 5 * 24
+===> 120
+'''
+递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。
+
+使用递归函数需要注意防止栈溢出。
+在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。
+由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。可以试试fact(1000)：
+'''
+>>> fact(1000)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 4, in fact
+  ...
+  File "<stdin>", line 4, in fact
+RuntimeError: maximum recursion depth exceeded in comparison
+'''
+#解决递归调用栈溢出的方法是通过尾递归优化，事实上尾递归和循环的效果是一样的，所以，把循环看成是一种特殊的尾递归函数也是可以的。
+
+#尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。
+#这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。
+
+#上面的fact(n)函数由于return n * fact(n - 1)引入了乘法表达式，所以就不是尾递归了。
+#要改成尾递归方式，需要多一点代码，主要是要把每一步的乘积传入到递归函数中：
+'''
+def fact(n):
+    return fact_iter(n, 1)
+
+def fact_iter(num, product):
+    if num == 1:
+        return product
+    return fact_iter(num - 1, num * product)
+'''
+#可以看到，return fact_iter(num - 1, num * product)仅返回递归函数本身，
+#num - 1和num * product在函数调用前就会被计算，不影响函数调用。
+
+#fact(5)对应的fact_iter(5, 1)的调用如下：
+'''
+===> fact_iter(5, 1)
+===> fact_iter(4, 5)
+===> fact_iter(3, 20)
+===> fact_iter(2, 60)
+===> fact_iter(1, 120)
+===> 120
+'''
+#尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。
+#遗憾的是，大多数编程语言没有针对尾递归做优化，Python解释器也没有做优化，所以，即使把上面的fact(n)函数改成尾递归方式，也会导致栈溢出。
+
+
+#高阶函数
+'''
+>>> f = abs
+>>> f
+<built-in function abs>
+'''
+#结论：函数本身也可以赋值给变量，即：变量可以指向函数。
+#如果一个变量指向了一个函数，那么，可否通过该变量来调用这个函数？用代码验证一下：
+'''
+>>> f = abs
+>>> f(-10)
+10
+'''
+#成功！说明变量f现在已经指向了abs函数本身。直接调用abs()函数和调用变量f()完全相同。
+
+#函数名也是变量
+#那么函数名是什么呢？函数名其实就是指向函数的变量！对于abs()这个函数，完全可以把函数名abs看成变量，它指向一个可以计算绝对值的函数！
+#如果把abs指向其他对象，会有什么情况发生？
+'''
+>>> abs = 10
+>>> abs(-10)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not callable
+'''
+#把abs指向10后，就无法通过abs(-10)调用该函数了！因为abs这个变量已经不指向求绝对值函数而是指向一个整数10！
+
+#当然实际代码绝对不能这么写，这里是为了说明函数名也是变量。要恢复abs函数，请重启Python交互环境。
+#注：由于abs函数实际上是定义在import builtins模块中的，所以要让修改abs变量的指向在其它模块也生效，要用import builtins; builtins.abs = 10。
+
+#传入函数
+#既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+
+#一个最简单的高阶函数：
+'''
+def add(x, y, f):
+    return f(x) + f(y)
+'''
+#当我们调用add(-5, 6, abs)时，参数x，y和f分别接收-5，6和abs，根据函数定义，我们可以推导计算过程为：
+'''
+x = -5
+y = 6
+f = abs
+f(x) + f(y) ==> abs(-5) + abs(6) ==> 11
+return 11
+'''
+#用代码验证一下：
+'''
+>>> add(-5, 6, abs)
+11
+'''
+#编写高阶函数，就是让函数的参数能够接收别的函数。
+
 
 #将函数存储在模块中
 
