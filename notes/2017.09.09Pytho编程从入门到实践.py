@@ -1467,6 +1467,107 @@ return 11
 #再将模块导入到主程序中
 #import语句允许在当前运行的程序文件中使用模块的代码
 
+#作用域
+
+#在一个模块中，我们可能会定义很多函数和变量，但有的函数和变量我们希望给别人使用，
+#有的函数和变量我们希望仅仅在模块内部使用。在Python中，是通过_前缀来实现的。
+#正常的函数和变量名是公开的（public），可以被直接引用，比如：abc，x123，PI等；
+#类似__xxx__这样的变量是特殊变量，可以被直接引用，但是有特殊用途，
+#比如上面的__author__，__name__就是特殊变量，hello模块定义的文档注释也可以用特殊变量__doc__访问，我们自己的变量一般不要用这种变量名；
+#类似_xxx和__xxx这样的函数或变量就是非公开的（private），不应该被直接引用，比如_abc，__abc等；
+#之所以我们说，private函数和变量“不应该”被直接引用，而不是“不能”被直接引用，
+#是因为Python并没有一种方法可以完全限制访问private函数或变量，但是，从编程习惯上不应该引用private函数或变量。
+#private函数或变量不应该被别人引用，那它们有什么用呢？请看例子：
+'''
+'private'
+def _private_1(name):
+    return 'Hello, %s' % name
+
+'private'
+def _private_2(name):
+    return 'Hi, %s' % name
+
+'public'
+def greeting(name):
+    if len(name) > 3:
+        return _private_1(name)
+    else:
+        return _private_2(name)
+'''
+#我们在模块里公开greeting()函数，而把内部逻辑用private函数隐藏起来了，
+#这样，调用greeting()函数不用关心内部的private函数细节，这也是一种非常有用的代码封装和抽象的方法，即：
+#外部不需要引用的函数全部定义成private，只有外部需要引用的函数才定义为public。
+
+#关于代码if name == 'main': 可能看了之后可能挺晕的，下面举几个例子解释下，
+#希望能让大家对这行的代码的功能有更深的认识，还是那句话，欢迎大家指正定会虚心接受。
+
+#先编写一个测试模块atestmodule.py
+'''
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+' a test module '
+
+def addFunc(a,b):  
+    return a+b  
+
+print('atestmodule计算结果:',addFunc(1,1))
+'''
+#再编写一个模块anothertestmodule.py来调用上面的模块：
+'''
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+' a test module '
+
+import atestmodule
+
+print('调用anothermodule模块执行的结果是：',atestmodule.addFunc(12,23))
+'''
+#在刚才两个模块的路径（我的路径为：“C:\work”）中打开cmd，用命令行运行atestmodule.py：
+'''
+C:\work>python atestmodule.py
+atestmodule计算结果: 2
+'''
+#在刚才两个模块的路径中打开，用命令行运行anothertestmodule.py：
+'''
+C:\work>python anothertestmodule.py
+atestmodule计算结果: 2
+调用test模块执行的结果是： 35
+'''
+#显然，当我运行anothertestmodule.py后第一句并不是调用者所需要的，为了解决这一问题，Python提供了一个系统变量：__name__
+#注：name两边各有2个下划线__name__有2个取值：当模块是被调用执行的，取值为模块的名字；当模块是直接执行的，则该变量取值为：__main__
+#于是乎，被调用模块的测试代码就可以写在if语句里了，如下：
+'''
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+' a test module '
+
+def addFunc(a,b):  
+    return a+b  
+
+if __name__ == '__main__':  
+    print('atestmodule计算结果:',addFunc(1,1))
+'''
+当再次运行atestmodule.py：
+
+C:\work>python atestmodule.py
+atestmodule计算结果: 2
+
+#结果并没有改变，因为调用atestmodule.py时，__name__取值为__main__，if判断为真，所以就输出上面的结果
+当再次运行atestmodule.py：
+
+C:\work>python anothertestmodule.py
+调用test模块执行的结果是： 35
+
+#此时我们就得到了预期结果，不输出多余的结果。能实现这一点的主要原因在于当调用一个module时，此时的__name__取值为模块的名字，所以if判断为假，不执行后续代码。
+所以代码if name == 'main': 实现的功能就是Make a script both importable and executable，也就是说可以让模块既可以导入到别的模块中用，另外该模块自己也可执行。
+
+
+
+
+
 #导入整个模块
 '''
 module_name.make_pizza(32, 'mushrooms')
