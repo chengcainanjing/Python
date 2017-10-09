@@ -1550,20 +1550,28 @@ def addFunc(a,b):
 if __name__ == '__main__':  
     print('atestmodule计算结果:',addFunc(1,1))
 '''
-当再次运行atestmodule.py：
-
+#当再次运行atestmodule.py：
+'''
 C:\work>python atestmodule.py
 atestmodule计算结果: 2
-
+'''
 #结果并没有改变，因为调用atestmodule.py时，__name__取值为__main__，if判断为真，所以就输出上面的结果
-当再次运行atestmodule.py：
-
+#当再次运行atestmodule.py：
+'''
 C:\work>python anothertestmodule.py
 调用test模块执行的结果是： 35
+'''
+#此时我们就得到了预期结果，不输出多余的结果。能实现这一点的主要原因在于当调用一个module时，
+#此时的__name__取值为模块的名字，所以if判断为假，不执行后续代码。
+#所以代码if name == 'main': 实现的功能就是Make a script both importable and executable，
+#也就是说可以让模块既可以导入到别的模块中用，另外该模块自己也可执行。
 
-#此时我们就得到了预期结果，不输出多余的结果。能实现这一点的主要原因在于当调用一个module时，此时的__name__取值为模块的名字，所以if判断为假，不执行后续代码。
-所以代码if name == 'main': 实现的功能就是Make a script both importable and executable，也就是说可以让模块既可以导入到别的模块中用，另外该模块自己也可执行。
-
+#其他人的理解
+#学过C语言的都知道，C语言定义主程序入口不就是main()函数吗，main代表了程序主入口，即和系统的接口（说白了就是命令行直接调用）。
+#if name == 'main':   这句话的核心无非就是在判断该程序文件是否作为主程序入口罢了。
+#如果在命令行直接调用该程序文件，该文件作为主程序入口，name == 'main'理所当然啊。
+#如果在命令行调用其他程序文件，主程序入口name == 'main'自然不成立，因为main等于那个你在命令行输入的程序名。
+#这个东西的好处就是，别人调用时（你并非是主程序入口）后面的东西不运行，自己命令行执行时（你是主程序入口）后面的东西运行。故可以作为测试用。
 
 
 
